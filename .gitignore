@@ -36,4 +36,3 @@ plugged
 .netrwhist
 autoload/plugin.vim.old
 .DS_Store
-init.vim
