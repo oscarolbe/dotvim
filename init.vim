@@ -3,20 +3,14 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
 
-" Navigation
 Plug 'majutsushi/tagbar'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-easytags'
-
-" Text helpers
 Plug 'Raimondi/delimitMate'
 Plug 'vim-scripts/HTML-AutoCloseTag'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'scrooloose/nerdcommenter'
-
-
-" Syntax
 Plug 'alvarolizama/vim-html'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'othree/html5.vim'
@@ -29,21 +23,17 @@ Plug 'elixir-lang/vim-elixir'
 Plug 'scrooloose/syntastic'
 Plug 'davidhalter/jedi-vim'
 Plug 'slashmili/alchemist.vim'
-
-" Eyecandy
 Plug 'chriskempson/base16-vim'
 Plug 'Yggdroot/indentLine'
 Plug 'ap/vim-css-color'
 Plug 'itchyny/lightline.vim'
 Plug 'kien/rainbow_parentheses.vim'
-
-" Snipets
 Plug 'garbas/vim-snipmate'
 Plug 'honza/vim-snippets'
-
-" Utils
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'
+Plug 'sjl/gundo.vim'
+Plug 'cohama/agit.vim'
 Plug 'duggiefresh/vim-easydir'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
@@ -169,11 +159,10 @@ let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 
 let mapleader = "º"
 
-let g:ctrlp_extensions = ['undo']
-
+let g:easytags_auto_highlight = 0
+let g:easytags_by_filetype = '~/.tags/'
 let g:easytags_autorecurse = 1
-let g:easytags_async = 1
-let g:easytags_always_enabled = 1
+let g:easytags_suppress_report = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -224,11 +213,14 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Key Maps
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 nmap <Space> i
 nmap <C-i> ggvG=<CR>
 nmap - <Esc>:CtrlPClearAllCache<CR><Esc>:CtrlP<CR>
 nmap tt <Esc>:TagbarToggle<CR>
+nmap <Leader>gh <Esc>:Gblame<CR>
+nmap <Leader>gb <Esc>:Gbrowse<CR>
+nmap <Leader>gl <Esc>:AgitFile<CR>
+nmap <Leader>gu <Esc>:GundoToggle<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
