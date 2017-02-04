@@ -3,46 +3,90 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" General Plugins
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""" Code Navigation
 Plug 'majutsushi/tagbar'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-easytags'
+
+"""" Code completation
 Plug 'Raimondi/delimitMate'
-Plug 'vim-scripts/HTML-AutoCloseTag'
-Plug 'terryma/vim-multiple-cursors'
 Plug 'scrooloose/nerdcommenter'
+Plug 'garbas/vim-snipmate' | Plug 'honza/vim-snippets' | Plug 'MarcWeber/vim-addon-mw-utils'
+
+"""" Git
+Plug 'mhinz/vim-signify'
+Plug 'tpope/vim-fugitive'
+Plug 'cohama/agit.vim'
+
+"""" Linters
+Plug 'scrooloose/syntastic'
+
+"""" Other plugins
+Plug 'sjl/gundo.vim'
+Plug 'duggiefresh/vim-easydir'
+
+"""" Eye candy
+Plug 'Yggdroot/indentLine'
+Plug 'itchyny/lightline.vim'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'chriskempson/base16-vim'
+
+"""" Python
+Plug 'davidhalter/jedi-vim'
+Plug 'hdima/python-syntax'
+
+"""" HTML
 Plug 'alvarolizama/vim-html'
-Plug 'hail2u/vim-css3-syntax'
 Plug 'othree/html5.vim'
+Plug 'vim-scripts/HTML-AutoCloseTag'
+
+"""" Elixir
+Plug 'slashmili/alchemist.vim'
+Plug 'elixir-lang/vim-elixir'
+
+"""" CSS
+Plug 'hail2u/vim-css3-syntax'
+Plug 'ap/vim-css-color'
+
+"""" JS
 Plug 'othree/vim-javascript-syntax'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'vim-scripts/JSON.vim'
-Plug 'hdima/python-syntax'
+
+"""" Docker
 Plug 'ekalinin/Dockerfile.vim'
-Plug 'elixir-lang/vim-elixir'
-Plug 'scrooloose/syntastic'
-Plug 'davidhalter/jedi-vim'
-Plug 'slashmili/alchemist.vim'
-Plug 'chriskempson/base16-vim'
-Plug 'Yggdroot/indentLine'
-Plug 'ap/vim-css-color'
-Plug 'itchyny/lightline.vim'
-Plug 'kien/rainbow_parentheses.vim'
-Plug 'garbas/vim-snipmate'
-Plug 'honza/vim-snippets'
-Plug 'mhinz/vim-signify'
-Plug 'tpope/vim-fugitive'
-Plug 'sjl/gundo.vim'
-Plug 'cohama/agit.vim'
-Plug 'duggiefresh/vim-easydir'
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'tomtom/tlib_vim'
 
 call plug#end()
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Basic
+" Key Maps
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <Space> i
+nmap <C-i> ggvG=<CR>
+nmap - <Esc>:CtrlPClearAllCache<CR><Esc>:CtrlP<CR>
+nmap tt <Esc>:TagbarToggle<CR>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Autocommands
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au BufRead,BufNewFile *.html set filetype=html.htmldjango
+au BufRead,BufNewFile *.py set filetype=python.django
+au FileType html,markdown set omnifunc=htmlcomplete#CompleteTags
+au FileType css set omnifunc=csscomplete#CompleteCSS
+au FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+au FileType python set omnifunc=jedi#completions shiftwidth=4 tabstop=4 softtabstop=4 colorcolumn=80 completeopt-=preview
+au BufWritePre * :%s/\s\+$//e
+au WinLeave * set nocursorline nocursorcolumn
+au WinEnter * set cursorline cursorcolumn
+au VimEnter * RainbowParenthesesToggleAll
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Basic Options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 scriptencoding utf-8
 set encoding=utf-8
@@ -55,10 +99,10 @@ set nocompatible
 set confirm
 set noswapfile
 set nobackup
-set linespace=0
+set linespace=1
 set wildmenu
 set hidden
-set showtabline=0
+set showtabline=1
 set modifiable
 
 set ruler
@@ -94,18 +138,51 @@ set lazyredraw
 set nolist
 set clipboard=unnamed
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+let g:netrw_localrmdir="rm -rf"
+let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
+let mapleader = "º"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugins config
+" Syntax Options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+syntax on
+set t_Co=256
+set background=dark
+
 let base16colorspace=256
-
 let python_highlight_all = 1
 
+colorscheme base16-monokai
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" GUI Options
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if has('gui_running')
+  set go-=T
+  set go-=r
+  set go-=L
+  set guifont=mononoki\ Bold:h12
+endif
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CTRLP Options
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ctrlp_working_path_mode = 'r'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" RBPT Options
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 1
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Syntastic Options
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:syntastic_html_checkers = []
 let g:syntastic_python_checkers = ['pyflakes', 'python']
 let g:syntastic_always_populate_loc_list = 1
@@ -113,13 +190,22 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Jedi Options
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:jedi#auto_initialization = 1
 let g:jedi#popup_on_dot = 0
 let g:jedi#completions_enabled = 1
 let g:jedi#show_call_signatures = 0
 
-let g:netrw_localrmdir="rm -rf"
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Lightline Options
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 let g:lightline = {
       \ 'colorscheme': 'seoul256',
       \ 'component': {
@@ -150,24 +236,7 @@ let g:lightline.tab = {
       \ 'active': [ 'tabnum', 'filename', 'modified' ],
       \ 'inactive': [ 'tabnum', 'filename', 'modified' ] }
 
-let g:rbpt_max = 16
-let g:rbpt_loadcmd_toggle = 1
 
-let g:ctrlp_working_path_mode = 'r'
-
-let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
-
-let mapleader = "º"
-
-let g:easytags_auto_highlight = 0
-let g:easytags_by_filetype = '~/.tags/'
-let g:easytags_autorecurse = 1
-let g:easytags_suppress_report = 1
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Helpers
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! LightLineModified()
   return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
 endfunction
@@ -208,52 +277,3 @@ endfunction
 function! LightLineMode()
   return winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Key Maps
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <Space> i
-nmap <C-i> ggvG=<CR>
-nmap - <Esc>:CtrlPClearAllCache<CR><Esc>:CtrlP<CR>
-nmap tt <Esc>:TagbarToggle<CR>
-nmap <Leader>gh <Esc>:Gblame<CR>
-nmap <Leader>gb <Esc>:Gbrowse<CR>
-nmap <Leader>gl <Esc>:AgitFile<CR>
-nmap <Leader>gu <Esc>:GundoToggle<CR>
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Autocommands
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au BufRead,BufNewFile *.html set filetype=html.htmldjango
-au BufRead,BufNewFile *.py set filetype=python.django
-au FileType html,markdown set omnifunc=htmlcomplete#CompleteTags
-au FileType css set omnifunc=csscomplete#CompleteCSS
-au FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-au FileType python set omnifunc=jedi#completions shiftwidth=4 tabstop=4 softtabstop=4 colorcolumn=80 completeopt-=preview
-au BufWritePre * :%s/\s\+$//e
-au WinLeave * set nocursorline nocursorcolumn
-au WinEnter * set cursorline cursorcolumn
-au VimEnter * RainbowParenthesesToggleAll
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Themes
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-syntax on
-set t_Co=256
-
-set background=dark
-colorscheme base16-monokai
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" GUI
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if has('gui_running')
-  set go-=T
-  set go-=r
-  set go-=L
-  set guifont=mononoki\ Bold:h12
-endif
