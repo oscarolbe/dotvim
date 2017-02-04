@@ -13,7 +13,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 """" Code completation
 Plug 'Raimondi/delimitMate'
 Plug 'scrooloose/nerdcommenter'
-Plug 'garbas/vim-snipmate' | Plug 'honza/vim-snippets' | Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'garbas/vim-snipmate' | Plug 'honza/vim-snippets' | Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim'
 
 """" Git
 Plug 'mhinz/vim-signify'
@@ -21,7 +21,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'cohama/agit.vim'
 
 """" Linters
-Plug 'scrooloose/syntastic'
+Plug 'w0rp/ale'
 
 """" Other plugins
 Plug 'sjl/gundo.vim'
@@ -99,10 +99,10 @@ set nocompatible
 set confirm
 set noswapfile
 set nobackup
-set linespace=1
+set linespace=0
 set wildmenu
 set hidden
-set showtabline=1
+set showtabline=0
 set modifiable
 
 set ruler
@@ -131,7 +131,6 @@ set autoindent
 
 set cursorline
 set cursorcolumn
-"set laststatus=2
 
 set ttyfast
 set lazyredraw
@@ -183,12 +182,7 @@ let g:rbpt_loadcmd_toggle = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntastic Options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:syntastic_html_checkers = []
-let g:syntastic_python_checkers = ['pyflakes', 'python']
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
+let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -204,8 +198,9 @@ let g:jedi#show_call_signatures = 0
 " Lightline Options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%{ALEGetStatusLine()}
 set statusline+=%*
+set laststatus=2
 let g:lightline = {
       \ 'colorscheme': 'seoul256',
       \ 'component': {
@@ -220,12 +215,13 @@ let g:lightline = {
       \   'filetype': 'LightLineFiletype',
       \   'fileencoding': 'LightLineFileencoding',
       \   'mode': 'LightLineMode',
+      \   'ale': 'ALEGetStatusLine'
       \ },
       \ 'separator': { 'left': '', 'right': '' },
       \ 'subseparator': { 'left': '', 'right': '' },
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
+      \             [ 'fugitive', 'ale', 'readonly', 'filename', 'modified' ] ]
       \ },
       \ }
 
