@@ -10,6 +10,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'majutsushi/tagbar'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'shougo/vimfiler.vim' | Plug 'Shougo/unite.vim'
+Plug 'albfan/ag.vim'
 
 """" Code completation
 Plug 'Raimondi/delimitMate'

@@ -6,9 +6,9 @@ Clone this repository in your home folder and rename it as **.vim** and then cre
 
 ## Dependencies
 
-You must install the dependencies with brew or your favorite package manager, for now only ctags is necessary.
+You must install the dependencies with brew or your favorite package manager, for now only ctags and ag is necessary.
 
-    brew install ctags vim
+    brew install ctags ag vim
 
 ## Install Plugins
 
