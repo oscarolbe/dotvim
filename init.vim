@@ -9,6 +9,7 @@ call plug#begin('~/.vim/plugged')
 """" Code Navigation
 Plug 'majutsushi/tagbar'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'shougo/vimfiler.vim' | Plug 'Shougo/unite.vim'
 
 """" Code completation
 Plug 'Raimondi/delimitMate'
@@ -32,6 +33,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'itchyny/lightline.vim'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'chriskempson/base16-vim'
+Plug 'mhinz/vim-startify'
 
 """" Python
 Plug 'davidhalter/jedi-vim'
@@ -136,6 +138,8 @@ set ttyfast
 set lazyredraw
 set nolist
 set clipboard=unnamed
+
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*src/deps/*,*src/_build/*,*src/node_modules/*
 
 let g:netrw_localrmdir="rm -rf"
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
