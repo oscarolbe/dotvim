@@ -9,7 +9,6 @@ call plug#begin('~/.vim/plugged')
 """" Code Navigation
 Plug 'majutsushi/tagbar'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'shougo/vimfiler.vim' | Plug 'Shougo/unite.vim'
 Plug 'albfan/ag.vim'
 
 """" Code completation
@@ -61,6 +60,9 @@ Plug 'vim-scripts/JSON.vim'
 """" Docker
 Plug 'ekalinin/Dockerfile.vim'
 
+"""" cTags
+Plug 'ludovicchabant/vim-gutentags'
+
 call plug#end()
 
 
@@ -82,7 +84,7 @@ au FileType html,markdown set omnifunc=htmlcomplete#CompleteTags
 au FileType css set omnifunc=csscomplete#CompleteCSS
 au FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 au FileType python set omnifunc=jedi#completions shiftwidth=4 tabstop=4 softtabstop=4 colorcolumn=80 completeopt-=preview
-au BufWritePre * :%s/\s\+$//e
+"au BufWritePre * :%s/\s\+$//e
 au WinLeave * set nocursorline nocursorcolumn
 au WinEnter * set cursorline cursorcolumn
 au VimEnter * RainbowParenthesesToggleAll
@@ -140,7 +142,7 @@ set lazyredraw
 set nolist
 set clipboard=unnamed
 
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*src/deps/*,*src/_build/*,*src/node_modules/*
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*deps/*,*_build/*,*node_modules/*
 
 let g:netrw_localrmdir="rm -rf"
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
@@ -157,7 +159,7 @@ set background=dark
 let base16colorspace=256
 let python_highlight_all = 1
 
-colorscheme base16-monokai
+colorscheme base16-ashes
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -188,6 +190,7 @@ let g:rbpt_loadcmd_toggle = 1
 " Syntastic Options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
+let g:ale_lint_on_save = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
