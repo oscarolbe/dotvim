@@ -29,6 +29,7 @@ Plug 'w0rp/ale'
 """" Other plugins
 Plug 'sjl/gundo.vim'
 Plug 'duggiefresh/vim-easydir'
+Plug 'editorconfig/editorconfig-vim'
 
 """" Eye candy
 Plug 'Yggdroot/indentLine'
