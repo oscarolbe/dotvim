@@ -7,11 +7,9 @@ call plug#begin('~/.vim/plugged')
 " General Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """" Code Navigation
-"Plug 'majutsushi/tagbar'
-"Plug 'ctrlpvim/ctrlp.vim'
-"Plug 'albfan/ag.vim'
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-vinegar'
 
 """" Code completation
 Plug 'Raimondi/delimitMate'
@@ -30,6 +28,7 @@ Plug 'w0rp/ale'
 Plug 'sjl/gundo.vim'
 Plug 'duggiefresh/vim-easydir'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'terryma/vim-multiple-cursors'
 
 """" Eye candy
 Plug 'Yggdroot/indentLine'
@@ -63,8 +62,8 @@ Plug 'vim-scripts/JSON.vim'
 """" Docker
 Plug 'ekalinin/Dockerfile.vim'
 
-"""" cTags
-Plug 'ludovicchabant/vim-gutentags'
+"""" Elm Support
+Plug 'lambdatoast/elm.vim'
 
 call plug#end()
 
@@ -74,8 +73,7 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <Space> i
 nmap <C-i> ggvG=<CR>
-"nmap - <Esc>:CtrlPClearAllCache<CR><Esc>:CtrlP<CR>
-nmap - <Esc>:Files<CR>
+nmap _ <Esc>:Files<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -143,7 +141,8 @@ set cursorcolumn
 set ttyfast
 set lazyredraw
 set nolist
-set clipboard=unnamed
+set clipboard=unnamed,unnamedplus
+
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*deps/*,*_build/*,*node_modules/*
 
@@ -162,7 +161,7 @@ set background=dark
 let base16colorspace=256
 let python_highlight_all = 1
 
-colorscheme base16-ashes
+colorscheme base16-materia
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -174,12 +173,6 @@ if has('gui_running')
   set go-=L
   set guifont=mononoki\ Bold:h12
 endif
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" CTRLP Options
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ctrlp_working_path_mode = 'r'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
