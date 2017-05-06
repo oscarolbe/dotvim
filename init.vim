@@ -9,13 +9,11 @@ call plug#begin('~/.vim/plugged')
 """" Code Navigation
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-vinegar'
 
 """" Code completation
 Plug 'Raimondi/delimitMate'
 Plug 'scrooloose/nerdcommenter'
 Plug 'garbas/vim-snipmate' | Plug 'honza/vim-snippets' | Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim'
-Plug 'KeyboardFire/vim-minisnip'
 
 """" Git
 Plug 'mhinz/vim-signify'
@@ -25,33 +23,28 @@ Plug 'cohama/agit.vim'
 """" Linters
 Plug 'w0rp/ale'
 
-"""" Other plugins
-Plug 'sjl/gundo.vim'
-Plug 'duggiefresh/vim-easydir'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'terryma/vim-multiple-cursors'
-
 """" Eye candy
 Plug 'Yggdroot/indentLine'
 Plug 'kien/rainbow_parentheses.vim'
-Plug 'mhinz/vim-startify'
 Plug 'itchyny/vim-cursorword'
 Plug 'liuchengxu/space-vim-dark'
 Plug 'liuchengxu/eleline.vim'
+
+"""" Elixir
+Plug 'slashmili/alchemist.vim'
+Plug 'elixir-lang/vim-elixir'
 
 """" Python
 Plug 'davidhalter/jedi-vim'
 Plug 'hdima/python-syntax'
 
+"""" Go
+Plug 'fatih/vim-go'
+
 """" HTML
 Plug 'alvarolizama/vim-html'
 Plug 'othree/html5.vim'
 Plug 'vim-scripts/HTML-AutoCloseTag'
-
-"""" Elixir
-Plug 'slashmili/alchemist.vim'
-Plug 'elixir-lang/vim-elixir'
-Plug 'mmorearty/elixir-ctags'
 
 """" CSS
 Plug 'hail2u/vim-css3-syntax'
@@ -62,14 +55,17 @@ Plug 'othree/vim-javascript-syntax'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'vim-scripts/JSON.vim'
 
-"""" Docker
-Plug 'ekalinin/Dockerfile.vim'
-
 """" Elm Support
 Plug 'lambdatoast/elm.vim'
 
-"""" Go
-Plug 'fatih/vim-go'
+"""" Docker
+Plug 'ekalinin/Dockerfile.vim'
+
+"""" Other plugins
+Plug 'sjl/gundo.vim'
+Plug 'duggiefresh/vim-easydir'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'terryma/vim-multiple-cursors'
 
 call plug#end()
 
@@ -80,7 +76,9 @@ call plug#end()
 nmap <Space> i
 nmap <C-i> ggvG=<CR>
 nmap - <Esc>:Files<CR>
-nmap _ <Plug>VinegarUp
+nmap _ <Esc>:Explore<CR>
+nmap . <Esc>:Buffers<CR>
+nmap , <Esc>:Ag<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -159,7 +157,8 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*deps/*,*_build/*,*node_modules/*
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:netrw_localrmdir="rm -rf"
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
-let mapleader = ","
+let g:netrw_liststyle = 1
+let g:netrw_banner = 0
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -186,12 +185,6 @@ let g:rbpt_loadcmd_toggle = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
 let g:ale_lint_on_save = 1
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Minisnipets
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:minisnip_trigger = '<C-s><TAB>'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
