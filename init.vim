@@ -14,7 +14,7 @@ Plug 'tpope/vim-vinegar'
 """" Code completation
 Plug 'Raimondi/delimitMate'
 Plug 'scrooloose/nerdcommenter'
-Plug 'garbas/vim-snipmate' | Plug 'honza/vim-snippets' | Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim'
+Plug 'KeyboardFire/vim-minisnip'
 
 """" Git
 Plug 'mhinz/vim-signify'
@@ -32,10 +32,11 @@ Plug 'terryma/vim-multiple-cursors'
 
 """" Eye candy
 Plug 'Yggdroot/indentLine'
-Plug 'itchyny/lightline.vim'
 Plug 'kien/rainbow_parentheses.vim'
-Plug 'chriskempson/base16-vim'
 Plug 'mhinz/vim-startify'
+Plug 'itchyny/vim-cursorword'
+Plug 'liuchengxu/space-vim-dark'
+Plug 'liuchengxu/eleline.vim'
 
 """" Python
 Plug 'davidhalter/jedi-vim'
@@ -65,6 +66,9 @@ Plug 'ekalinin/Dockerfile.vim'
 """" Elm Support
 Plug 'lambdatoast/elm.vim'
 
+"""" Go
+Plug 'fatih/vim-go'
+
 call plug#end()
 
 
@@ -73,7 +77,8 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <Space> i
 nmap <C-i> ggvG=<CR>
-nmap _ <Esc>:Files<CR>
+nmap - <Esc>:Files<CR>
+nmap _ <Plug>VinegarUp
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -142,10 +147,14 @@ set ttyfast
 set lazyredraw
 set nolist
 set clipboard=unnamed,unnamedplus
-
+set laststatus=2
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*deps/*,*_build/*,*node_modules/*
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" VIM Options
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:netrw_localrmdir="rm -rf"
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 let mapleader = ","
@@ -156,23 +165,11 @@ let mapleader = ","
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax on
 set t_Co=256
-set background=dark
 
-let base16colorspace=256
+hi Comment cterm=italic
+colorscheme space-vim-dark
+
 let python_highlight_all = 1
-
-colorscheme base16-materia
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" GUI Options
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if has('gui_running')
-  set go-=T
-  set go-=r
-  set go-=L
-  set guifont=mononoki\ Bold:h12
-endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -183,7 +180,7 @@ let g:rbpt_loadcmd_toggle = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Syntastic Options
+" Ale Options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
 let g:ale_lint_on_save = 1
@@ -196,84 +193,3 @@ let g:jedi#auto_initialization = 1
 let g:jedi#popup_on_dot = 0
 let g:jedi#completions_enabled = 1
 let g:jedi#show_call_signatures = 0
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Lightline Options
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set statusline+=%#warningmsg#
-set statusline+=%{ALEGetStatusLine()}
-set statusline+=%*
-set laststatus=2
-let g:lightline = {
-      \ 'colorscheme': 'seoul256',
-      \ 'component': {
-      \   'readonly': '%{&readonly?"":""}',
-      \ },
-      \ 'component_function': {
-      \   'modified': 'LightLineModified',
-      \   'readonly': 'LightLineReadonly',
-      \   'fugitive': 'LightLineFugitive',
-      \   'filename': 'LightLineFilename',
-      \   'fileformat': 'LightLineFileformat',
-      \   'filetype': 'LightLineFiletype',
-      \   'fileencoding': 'LightLineFileencoding',
-      \   'mode': 'LightLineMode',
-      \   'ale': 'ALEGetStatusLine'
-      \ },
-      \ 'separator': { 'left': '', 'right': '' },
-      \ 'subseparator': { 'left': '', 'right': '' },
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'fugitive', 'ale', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ }
-
-let g:lightline.tabline = {
-      \ 'left': [ [ 'tabs' ] ],
-      \ 'right': [ [ 'close' ] ] }
-let g:lightline.tab = {
-      \ 'active': [ 'tabnum', 'filename', 'modified' ],
-      \ 'inactive': [ 'tabnum', 'filename', 'modified' ] }
-
-
-function! LightLineModified()
-  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
-endfunction
-
-function! LightLineReadonly()
-  return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? '': ''
-endfunction
-
-function! LightLineFilename()
-  return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
-        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
-        \  &ft == 'unite' ? unite#get_status_string() :
-        \  &ft == 'vimshell' ? vimshell#get_status_string() :
-        \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
-        \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
-endfunction
-
-function! LightLineFugitive()
-  if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
-    let branch = fugitive#head()
-    return branch !=# '' ? ' '.branch : ''
-  endif
-  return ''
-endfunction
-
-function! LightLineFileformat()
-  return winwidth(0) > 70 ? &fileformat : ''
-endfunction
-
-function! LightLineFiletype()
-  return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
-endfunction
-
-function! LightLineFileencoding()
-  return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
-endfunction
-
-function! LightLineMode()
-  return winwidth(0) > 60 ? lightline#mode() : ''
-endfunction

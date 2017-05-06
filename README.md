@@ -8,7 +8,13 @@ Clone this repository in your home folder and rename it as **.vim** and then cre
 
 You must install the dependencies with brew or your favorite package manager, for now only ctags and ag is necessary.
 
-    brew install ctags ag vim
+    brew install ctags the_silver_searcher fzf vim
+
+## Settings
+
+Export the follow environment variables
+
+    export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore _builds --ignore deps --ignore node_modules -g ""'
 
 ## Install Plugins
 
