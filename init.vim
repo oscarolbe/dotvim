@@ -14,6 +14,7 @@ Plug 'tpope/vim-vinegar'
 """" Code completation
 Plug 'Raimondi/delimitMate'
 Plug 'scrooloose/nerdcommenter'
+Plug 'garbas/vim-snipmate' | Plug 'honza/vim-snippets' | Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim'
 Plug 'KeyboardFire/vim-minisnip'
 
 """" Git
@@ -50,6 +51,7 @@ Plug 'vim-scripts/HTML-AutoCloseTag'
 """" Elixir
 Plug 'slashmili/alchemist.vim'
 Plug 'elixir-lang/vim-elixir'
+Plug 'mmorearty/elixir-ctags'
 
 """" CSS
 Plug 'hail2u/vim-css3-syntax'
@@ -184,6 +186,12 @@ let g:rbpt_loadcmd_toggle = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
 let g:ale_lint_on_save = 1
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Minisnipets
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:minisnip_trigger = '<C-s><TAB>'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
