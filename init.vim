@@ -9,6 +9,8 @@ call plug#begin('~/.vim/plugged')
 """" Code Navigation
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf.vim'
+
+"""" Tmux
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'jebaum/vim-tmuxify'
 
