@@ -84,9 +84,6 @@ For tmux maybe you need this setup or only the last part
 
     # Copy paste support
     set-option -g default-command "reattach-to-user-namespace -l bash"
-    bind p paste-buffer
-    bind -t vi-copy 'v' begin-selection
-    bind -t vi-copy 'y' copy-selection
 
     # Enable mouse control (clickable windows, panes, resizable panes)
     set -g mouse on
