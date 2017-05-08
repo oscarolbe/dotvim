@@ -9,6 +9,8 @@ call plug#begin('~/.vim/plugged')
 """" Code Navigation
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf.vim'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'jebaum/vim-tmuxify'
 
 """" Code completation
 Plug 'Raimondi/delimitMate'
@@ -122,6 +124,7 @@ set number
 set cmdheight=1
 set backspace=2
 set mouse=a
+set ttymouse=sgr
 
 set showmatch
 set matchtime=5
@@ -146,7 +149,7 @@ set cursorcolumn
 set ttyfast
 set lazyredraw
 set nolist
-set clipboard=unnamed,unnamedplus
+set clipboard=unnamed
 set laststatus=2
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*deps/*,*_build/*,*node_modules/*
@@ -159,14 +162,13 @@ let g:netrw_localrmdir="rm -rf"
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 let g:netrw_liststyle = 1
 let g:netrw_banner = 0
-
+let mapleader = "º"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Syntax Options
+" Theme and Colors Options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax on
 set t_Co=256
-
 hi Comment cterm=italic
 colorscheme space-vim-dark
 
