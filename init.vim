@@ -70,6 +70,7 @@ Plug 'sjl/gundo.vim'
 Plug 'duggiefresh/vim-easydir'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'terryma/vim-multiple-cursors'
+"Plug 'embear/vim-localvimrc'
 
 call plug#end()
 
@@ -198,3 +199,9 @@ let g:jedi#auto_initialization = 1
 let g:jedi#popup_on_dot = 0
 let g:jedi#completions_enabled = 1
 let g:jedi#show_call_signatures = 0
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Alchemist Options
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:alchemist_compile_basepath = '/app/'
