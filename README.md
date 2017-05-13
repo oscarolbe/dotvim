@@ -25,6 +25,7 @@ Export the follow environment variables
 For tmux maybe you need add this options
 
     # VIM support
+    set -s escape-time 3
     is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
         | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"
     bind-key -n C-h if-shell "$is_vim" "send-keys C-h"  "select-pane -L"

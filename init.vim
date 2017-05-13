@@ -150,7 +150,7 @@ set cursorline
 set cursorcolumn
 
 set ttyfast
-set lazyredraw
+set nolazyredraw
 set nolist
 set clipboard=unnamed
 set laststatus=2
