@@ -32,7 +32,8 @@ Plug 'Yggdroot/indentLine'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'itchyny/vim-cursorword'
 Plug 'liuchengxu/space-vim-dark'
-Plug 'liuchengxu/eleline.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 """" Elixir
 Plug 'slashmili/alchemist.vim'
@@ -70,7 +71,6 @@ Plug 'sjl/gundo.vim'
 Plug 'duggiefresh/vim-easydir'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'terryma/vim-multiple-cursors'
-"Plug 'embear/vim-localvimrc'
 
 call plug#end()
 
@@ -80,10 +80,10 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <Space> i
 nmap <C-i> ggvG=<CR>
+nmap <C-@> <Esc>:Explore<CR>
 nmap - <Esc>:Files<CR>
-nmap _ <Esc>:Explore<CR>
+nmap _ <Esc>:Ag<CR>
 nmap . <Esc>:Buffers<CR>
-nmap , <Esc>:Ag<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -118,43 +118,33 @@ set nobackup
 set linespace=0
 set wildmenu
 set hidden
-set showtabline=0
+set showtabline=1
 set modifiable
-
 set ruler
 set number
-
 set cmdheight=1
 set backspace=2
 set mouse=a
 set ttymouse=sgr
-
 set showmatch
 set matchtime=5
 set nohlsearch
 set incsearch
 set novisualbell
-
 set expandtab
 set smarttab
 set tabstop=2
 set shiftwidth=2
 set nofoldenable
-
-set wildignore=*.pyc
-
 set smartindent
 set autoindent
-
 set cursorline
 set cursorcolumn
-
 set ttyfast
 set nolazyredraw
 set nolist
 set clipboard=unnamed
 set laststatus=2
-
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*deps/*,*_build/*,*node_modules/*
 
 
@@ -165,7 +155,8 @@ let g:netrw_localrmdir="rm -rf"
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 let g:netrw_liststyle = 1
 let g:netrw_banner = 0
-let mapleader = "º"
+let mapleader = ","
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Theme and Colors Options
@@ -176,6 +167,9 @@ hi Comment cterm=italic
 colorscheme space-vim-dark
 
 let python_highlight_all = 1
+let g:airline_powerline_fonts = 1
+let g:airline_theme='base16_spacemacs'
+let g:airline#extensions#tabline#enabled = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
