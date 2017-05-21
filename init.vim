@@ -115,37 +115,39 @@ set nocompatible
 set confirm
 set noswapfile
 set nobackup
-set linespace=0
-set wildmenu
 set hidden
-set showtabline=1
-set modifiable
 set ruler
 set number
-set cmdheight=1
-set backspace=2
+set nolist
+set clipboard=unnamed
 set mouse=a
 set ttymouse=sgr
-set showmatch
+set nofoldenable
+set modifiable
+set novisualbell
+set showtabline=1
+set linespace=0
+set laststatus=2
+set cmdheight=1
+set backspace=2
 set matchtime=5
+set showmatch
 set nohlsearch
 set incsearch
-set novisualbell
 set expandtab
 set smarttab
 set tabstop=2
 set shiftwidth=2
-set nofoldenable
 set smartindent
 set autoindent
 set cursorline
 set cursorcolumn
 set ttyfast
-set nolazyredraw
-set nolist
-set clipboard=unnamed
-set laststatus=2
+set ttyscroll=3
+set lazyredraw
+set synmaxcol=4096
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*deps/*,*_build/*,*node_modules/*
+set wildmenu
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -167,6 +169,11 @@ hi Comment cterm=italic
 colorscheme space-vim-dark
 
 let python_highlight_all = 1
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Airlines Options
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:airline_powerline_fonts = 1
 let g:airline_theme='base16_spacemacs'
 let g:airline#extensions#tabline#enabled = 1
