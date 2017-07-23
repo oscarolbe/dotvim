@@ -81,9 +81,9 @@ call plug#end()
 nmap <Space> i
 nmap <C-i> ggvG=<CR>
 nmap <C-@> <Esc>:Explore<CR>
-nmap - <Esc>:Files<CR>
-nmap _ <Esc>:Ag<CR>
-nmap . <Esc>:Buffers<CR>
+nmap . <Esc>:Files<CR>
+nmap , <Esc>:Ag<CR>
+nmap - <Esc>:Buffers<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -91,10 +91,8 @@ nmap . <Esc>:Buffers<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 au BufRead,BufNewFile *.html set filetype=html.htmldjango
 au BufRead,BufNewFile *.py set filetype=python.django
-au FileType html,markdown set omnifunc=htmlcomplete#CompleteTags
-au FileType css set omnifunc=csscomplete#CompleteCSS
-au FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 au FileType python set omnifunc=jedi#completions shiftwidth=4 tabstop=4 softtabstop=4 colorcolumn=80 completeopt-=preview
+au FileType elixir set colorcolumn=80
 au BufWritePre * :%s/\s\+$//e
 au WinLeave * set nocursorline nocursorcolumn
 au WinEnter * set cursorline cursorcolumn
@@ -157,7 +155,7 @@ let g:netrw_localrmdir="rm -rf"
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 let g:netrw_liststyle = 1
 let g:netrw_banner = 0
-let mapleader = ","
+let mapleader = "\"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
