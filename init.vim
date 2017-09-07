@@ -32,6 +32,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'itchyny/vim-cursorword'
 Plug 'liuchengxu/space-vim-dark'
+Plug 'reedes/vim-colors-pencil'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -155,7 +156,7 @@ let g:netrw_localrmdir="rm -rf"
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 let g:netrw_liststyle = 1
 let g:netrw_banner = 0
-let mapleader = "\"
+let mapleader = "\\"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -164,7 +165,8 @@ let mapleader = "\"
 syntax on
 set t_Co=256
 hi Comment cterm=italic
-colorscheme space-vim-dark
+"colorscheme space-vim-dark
+colorscheme pencil
 
 let python_highlight_all = 1
 
