@@ -40,6 +40,9 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'slashmili/alchemist.vim'
 Plug 'elixir-lang/vim-elixir'
 
+""" Solidity
+Plug 'tomlion/vim-solidity'
+
 """" Python
 Plug 'davidhalter/jedi-vim'
 Plug 'hdima/python-syntax'
@@ -72,6 +75,7 @@ Plug 'sjl/gundo.vim'
 Plug 'duggiefresh/vim-easydir'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'matze/vim-move'
 
 call plug#end()
 
@@ -157,7 +161,7 @@ let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 let g:netrw_liststyle = 1
 let g:netrw_banner = 0
 let mapleader = "\\"
-
+let g:move_key_modifier = 'C'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Theme and Colors Options
